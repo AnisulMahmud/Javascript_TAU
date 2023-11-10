@@ -1,7 +1,9 @@
-const {getCredentials} = require("../utils/requestUtils");
-
-// user model
-const User = require("../models/user"); 
+const {
+    getCredentials
+} = require("../utils/requestUtils");
+const {
+    getUser
+} = require("../utils/users");
 
 
 /**
@@ -20,23 +22,14 @@ const getCurrentUser = async request => {
     const authCredential = await getCredentials(request);
 
     if (authCredential) {
-        const [email,password ] = authCredential;
-        
-        /*if credentials are found, use User model findOne() method to find a user with the credential email
-           if no user with an email from the request is found, return null
-           use the User model's checkPassword to check the user password. 
-           If the passwords match, return the user, else return null
-        */   
-        const user = await User.findOne({email}); 
-
-        if(!user || !(await user.checkPassword(password))) {
-            return null;
-        }
-        return user;
-    } else{
+        const [
+            email,
+            password
+        ] = authCredential;
+        return await getUser(email, password);
+    } else {
         return null;
     }
-
 };
 
 module.exports = { getCurrentUser };

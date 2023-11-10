@@ -1,10 +1,5 @@
 const http = require('http');
-require('dotenv').config(); //loading enviornment
-
 const { handleRequest } = require('./routes');
-const { connectDB } = require('./models/db'); //importing the function 
-
-connectDB(); //connection to databse
 
 const PORT = process.env.PORT || 3000;
 const server = http.createServer(handleRequest);
