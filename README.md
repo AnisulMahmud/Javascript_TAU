@@ -1,1 +1,3 @@
-# This repo is my work for the Tampere Univeristy course's exercise. 
+# This is my solution for Web Development 1- TAU
+
+@author - Anisul Mahmud
